@@ -35,6 +35,16 @@ body {
   margin-bottom: 30px;
 }
 
+.cat-dropdown {
+  width: 100%;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: rgb(66, 66, 66)
+}
+
 .button-wrapper {
   text-align: center;
 }
@@ -84,3 +94,5 @@ body {
   font-family: 'montserrat';
   font-weight: 600
 }
+
+

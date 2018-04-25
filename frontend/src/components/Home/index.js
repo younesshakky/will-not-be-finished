@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import config from './config'
-import { Categories } from './components/index';
+import config from '../../config'
+import { Categories } from '../../components';
 
-import './App.css';
 
-class App extends Component {
+class Home extends Component {
   constructor () {
     super()
     this.state = {
@@ -12,7 +11,6 @@ class App extends Component {
       category: null
     }
   }
-
 
   handleChange (e) {
     this.setState({ category: e.target.value })
@@ -51,11 +49,11 @@ class App extends Component {
           </div>
           {
             this.state.challenge ?
-            <div className="challenge-card">
-            <h2>you'll Do</h2>
-            <p>{ this.state.challenge }</p>
-          </div> 
-          : null
+              <div className="challenge-card">
+              <h2>you'll Do</h2>
+              <p>{ this.state.challenge }</p>
+              </div> 
+              : null
           }
                
         </div>
@@ -64,5 +62,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
