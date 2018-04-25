@@ -1,0 +1,22 @@
+import React from 'react'
+import './style.css'
+
+class Categories extends React.Component {
+  render() {
+    return (
+      <select className="cat-dropdown" onChange={this.props.change}>
+        <option disabled value="null">-- choose a category --</option>
+        <option value="classes">classes</option>
+        <option value="databases">databases</option>
+        <option value="files">files</option>
+        <option value="games">games</option>
+        <option value="graphics and multimedia">graphics and multimedia</option>
+        <option value="text">text</option>
+        <option value="threading">threading</option>
+        <option value="web">web</option>
+      </select>
+    )
+  }
+}
+
+export default Categories
