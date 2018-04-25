@@ -9,7 +9,8 @@ class App extends Component {
     super()
     this.state = {
       challenge: null,
-      category: null
+      category: null,
+      loading: false
     }
   }
 
@@ -20,12 +21,13 @@ class App extends Component {
 
   getChallenege () {
     const { category } = this.state;
-
+    this.setState({ loading: true })
     fetch(`${config.api_url}/challenges/${category}`)
     .then(res => res.json())
     .then(res => {
       this.setState({
-        challenge: res.challenge
+        challenge: res.challenge,
+        loading: false
       })
     })
   }
@@ -52,12 +54,18 @@ class App extends Component {
             </button>
           </div>
           {
-            this.state.challenge ?
+            !this.state.loading && this.state.challenge ?
             <div className="challenge-card">
             <h2>you'll Do</h2>
             <p>{ this.state.challenge }</p>
           </div> 
           : null
+          }
+
+          {
+            this.state.loading
+            ? <p style={{ textAlign: 'center' }}>loading a challenge ....</p>
+            : null
           }
                
         </div>
