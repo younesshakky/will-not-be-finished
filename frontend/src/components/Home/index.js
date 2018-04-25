@@ -49,11 +49,11 @@ class Home extends Component {
           </div>
           {
             this.state.challenge ?
-              <div className="challenge-card">
-              <h2>you'll Do</h2>
-              <p>{ this.state.challenge }</p>
-              </div> 
-              : null
+            <div className="challenge-card">
+            <h2>you'll Do</h2>
+            <p>{ this.state.challenge }</p>
+            </div> 
+          : null
           }
                
         </div>

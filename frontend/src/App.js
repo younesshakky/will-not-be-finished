@@ -32,6 +32,8 @@ class App extends Component {
 
 
   render() {
+    let {challenge} = this.state
+
     return (
       <div className="app">
         <div className="container">
@@ -45,7 +47,7 @@ class App extends Component {
           </div>
           
           <div className="button-wrapper">
-            <button className="button" onClick={this.getChallenege.bind(this)}>
+            <button className="button" disabled={!this.state.category} onClick={this.getChallenege.bind(this)}>
               Gemme a challenge!
             </button>
           </div>
@@ -59,7 +61,6 @@ class App extends Component {
           }
                
         </div>
-
       </div>
     );
   }

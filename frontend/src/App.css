@@ -61,6 +61,12 @@ body {
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: .3;
+  cursor: auto;
+}
+
+
 .button:hover {
   background: #e55039;
   color: white;
