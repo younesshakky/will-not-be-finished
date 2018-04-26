@@ -6,6 +6,10 @@ body {
   font-family: 'lato';
 }
 
+.app {
+  padding-bottom: 30px;
+}
+
 .container {
   width: 950px;
   max-width: 100%;
@@ -102,3 +106,61 @@ body {
 }
 
 
+.loading-spinner {
+  margin-top: 50px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  /* background: #ccc; */
+  border-radius: 50%;
+  left: calc(50% - 20px);
+  animation: spin .6s linear infinite;
+}
+
+.loading-spinner:after, .loading-spinner:before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loading-spinner:after {
+  border: 2px solid #dde2f3;
+}
+
+.loading-spinner:before {
+  border: 2px solid transparent;
+  border-right-color: #4a69bd;
+  border-left-color: #4a69bd;
+  
+  z-index: 10;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+
+.share-icon {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 5px;
+  color: white;
+  transition: opacity .3s ease;
+}
+
+.share-icon:hover {
+  opacity: .7;
+}
+
+.share-icon i {
+  font-size: 24px;
+}
