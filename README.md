@@ -4,7 +4,7 @@ i'm pretty sure that i will not finish this project
 
 > later on: i finished it!
 
-### [test that sh*t](projectly.surge.sh)
+### [test that sh*t](http://projectly.surge.sh)
 
 
 ### what i've learned from this project
