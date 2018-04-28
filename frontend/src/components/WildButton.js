@@ -9,13 +9,13 @@ class WildButton extends React.Component {
   }
 
   render () {
-    /* if (this.props.countable) {
+    if (this.props.boring) {
       return (
-        <button className="button" disabled={this.props.disabled} onClick={}>
-          Gemme a challenge!
+        <button className="button" disabled={this.props.disabled} onClick={this.props.clicked}>
+          {this.props.text}
         </button>
       )
-    } */
+    }
 
     return (
       <button

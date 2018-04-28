@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 class Share extends React.Component {
   
   constructor() {
@@ -11,7 +10,7 @@ class Share extends React.Component {
   openShareWindow(e) {
     e.preventDefault()
     window.open(
-      `https://twitter.com/intent/tweet?text=${this.props.text}`,
+      `https://twitter.com/intent/tweet?text=challenge: ${this.props.text}`,
       '',
       'width=600,height=300'
     )

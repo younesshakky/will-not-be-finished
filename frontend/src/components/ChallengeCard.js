@@ -1,12 +1,12 @@
 import React from 'react'
 import { Share } from '../components'
 
-let ChallengeCard = ({ challenge }) => {
-  return (
+let ChallengeCard = ({ challenge, show }) => {
+  return show && (
     <div className="challenge-card">
-      <h2>you'll Do</h2>
-      <p>{ challenge }</p>
-      <Share text={challenge} />
+      <h2>{ challenge.name }</h2>
+      <p>{ challenge.text }</p>
+      <Share text={challenge.text} />
     </div>
   )
 }

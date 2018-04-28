@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import config from '../config'
-import { Categories, ChallengeCard, WildButton } from '../components';
+import { Categories, ChallengeCard, WildButton, Spinner } from '../components';
 
 
-class Home extends Component {
+class Home extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -14,7 +14,6 @@ class Home extends Component {
     }
   }
 
-
   handleChange (e) {
     this.setState({ category: e.target.value })
   }
@@ -24,9 +23,10 @@ class Home extends Component {
     this.setState({ loading: true, challenge: null })
     fetch(`${config.api_url}/challenges/${category}`)
     .then(res => res.json())
-    .then(res => {
+    .then(challenge => {
+
       this.setState({
-        challenge: res.challenge,
+        challenge,
         loading: false,
         error: null
       })
@@ -38,40 +38,43 @@ class Home extends Component {
 
 
   render() {
+    return this.props.show && (
+      <div className="home animated fadeIn">
+        <div className="container">
+          <div className="heading">
+            <h1>Random Programming Challenges</h1>
+            <p>Chooes a category &amp; Hit the fucking button</p>
+          </div>
 
-    return (
-      <div className="container">
-        <div className="heading">
-          <h1>Random Programming Challenges</h1>
-          <p>Chooes a category &amp; Hit the fucking button</p>
+          <div className="categories">
+            <Categories change={this.handleChange.bind(this)} />
+          </div>
+          
+          <div className="button-wrapper">
+            <WildButton
+            shouldChange={!!this.state.challenge}
+            disabled={!this.state.category}
+            clicked={this.getChallenge.bind(this)} />
+          </div>
+
+          <ChallengeCard
+          show={!this.state.loading && this.state.challenge}
+          challenge={this.state.challenge} />
+
+
+          <Spinner show={this.state.loading} />
+
+          {
+            this.state.error
+            ? <p>{this.state.error.message}</p>
+            : null 
+          }
+
+          <div className="text-center submission -wrap" style={{ marginTop: '30px' }}>
+            <a className="prim-link" href="#submit" onClick={this.props.submitChallenge}>Submit a challenge?</a>        
+          </div >
+                
         </div>
-
-        <div className="categories">
-          <Categories change={this.handleChange.bind(this)} />
-        </div>
-        
-        <div className="button-wrapper">
-          <WildButton shouldChange={!!this.state.challenge} disabled={!this.state.category} clicked={this.getChallenge.bind(this)} />
-        </div>
-
-        {
-          !this.state.loading && this.state.challenge
-          ? <ChallengeCard challenge={this.state.challenge} />
-          : null
-        }
-
-        {
-          this.state.loading
-          ? <div className="loading-spinner"></div>
-          : null
-        }
-
-        {
-          this.state.error
-          ? <p>{this.state.error.message}</p>
-          : null 
-        }
-              
       </div>
     );
   }

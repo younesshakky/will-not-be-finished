@@ -1,18 +1,24 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var routes = require('./routes/index');
-var app = express();
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const db = require('./db/index')
+const index = require('./routes/index.route');
+
+const app = express();
+
+// establish database connection
+db.init()
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('Access-Control-Allow-Origin', '*')
+
 app.set('Access-Control-Allow-Headers', 'Content-Type')
 
 app.use(function (req, res, next) {
@@ -21,35 +27,26 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/', routes);
+app.use('/api', index);
 
-/// catch 404 and forwarding to error handler
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.send({
-            message: err.message,
-            code: err.code
-        })
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
+// error handler
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500)
-    res.send({ message: 'something went wrong buddy'})
-});
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  // render the error page
+  res.status(err.status || 500);
+  res.send(err)
+
+  console.log(err.message)
+});
 
 module.exports = app;

@@ -3,8 +3,8 @@ import React from 'react'
 class Categories extends React.Component {
   render() {
     return (
-      <select className="cat-dropdown" onChange={this.props.change}>
-        <option disabled value="null">-- choose a category --</option>
+      <select className="input-control" onChange={this.props.change}>
+        <option value="null">-- choose a category --</option>
         <option value="classes">classes</option>
         <option value="databases">databases</option>
         <option value="files">files</option>
@@ -12,7 +12,7 @@ class Categories extends React.Component {
         <option value="graphics and multimedia">graphics and multimedia</option>
         <option value="text">text</option>
         <option value="threading">threading</option>
-        <option value="web">web</option>
+        <option value="web">web</option>￼
       </select>
     )
   }
