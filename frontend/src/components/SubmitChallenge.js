@@ -1,6 +1,7 @@
 import React from 'react'
 import { Categories, WildButton } from '../components' 
 import config from '../config'
+import { Link, Redirect } from 'react-router-dom'
 
 class SubmitChallenge extends React.Component {
   constructor() {
@@ -8,7 +9,8 @@ class SubmitChallenge extends React.Component {
     this.state = {
       category: null,
       name: null,
-      text: null
+      text: null,
+      redirect: false
     }
     this.initialState = this.state
   }
@@ -25,13 +27,13 @@ class SubmitChallenge extends React.Component {
     })
     .then(res => res.json())
     .then(res => {
-      this.setState({ ...this.initialState })
-      this.props.sayThanks()
+      this.setState({ ...this.initialState, redirect: true })
+
+      // this.props.sayThanks()
     })
   }
 
-  categoryChange(e) {
-    var category = e.target.value;
+  categoryChange(category) {
     this.setState({ category })
   }
 
@@ -42,9 +44,12 @@ class SubmitChallenge extends React.Component {
   }
 
   render() {
-    let { name, category, text } = this.state;
+    let { name, category, text, redirect } = this.state;
 
-    return this.props.show && (
+    if (redirect) {
+      return <Redirect to="/thanks" />
+    }
+    return (
       <div className="submission-wrapper animated fadeIn">
         <div className="container">
           <div className="heading">
@@ -80,6 +85,7 @@ class SubmitChallenge extends React.Component {
 
               <div className="form-group">
                 <WildButton disabled={!name || !category || !text } boring={true} text="submit"></WildButton>
+                <Link to="/" className="prim-link ml-1">back</Link>
               </div>
             </form>
           </div>

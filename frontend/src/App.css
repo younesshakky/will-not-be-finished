@@ -24,6 +24,10 @@ body {
   text-decoration: underline;
 }
 
+.ml-1 {
+  margin-left: 1rem;
+}
+
 .container {
   width: 950px;
   max-width: 100%;
@@ -97,6 +101,7 @@ body {
   border-radius: 33px;
   font-size: 1.1rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button.secondary {

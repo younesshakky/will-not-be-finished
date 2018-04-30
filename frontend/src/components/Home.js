@@ -1,7 +1,7 @@
 import React from 'react';
 import config from '../config'
 import { Categories, ChallengeCard, WildButton, Spinner } from '../components';
-
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
   constructor () {
@@ -14,8 +14,8 @@ class Home extends React.Component {
     }
   }
 
-  handleChange (e) {
-    this.setState({ category: e.target.value })
+  handleChange (category) {
+    this.setState({ category })
   }
 
   getChallenge () {
@@ -38,7 +38,7 @@ class Home extends React.Component {
 
 
   render() {
-    return this.props.show && (
+    return (
       <div className="home animated fadeIn">
         <div className="container">
           <div className="heading">
@@ -71,8 +71,9 @@ class Home extends React.Component {
           }
 
           <div className="text-center submission -wrap" style={{ marginTop: '30px' }}>
-            <a className="prim-link" href="#submit" onClick={this.props.submitChallenge}>Submit a challenge?</a>        
-          </div >
+          <Link className="prim-link" to="/submit">Submit a challenge?</Link>
+            {/* <a className="prim-link" href="#submit" onClick={this.props.submitChallenge}>Submit a challenge?</a>*/}
+          </div>
                 
         </div>
       </div>
